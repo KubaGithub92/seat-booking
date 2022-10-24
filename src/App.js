@@ -1,10 +1,22 @@
 import "./App.css";
-import Row from "./components/Row.js";
+import React from "react";
+import SeatWithContext from "./components/SeatWithContext";
 
 function App() {
+  const numberOfSeats = 48;
   return (
     <div className="train-carriage">
-      <Row />
+      {new Array(numberOfSeats / 4).fill(null).map((n, row) => (
+        <div key={row} className="carriage-row">
+          <SeatWithContext number={row * 4 + 1} />
+          <SeatWithContext number={row * 4 + 2} />
+
+          <div className="aisle-spacer"></div>
+
+          <SeatWithContext number={row * 4 + 3} />
+          <SeatWithContext number={row * 4 + 4} />
+        </div>
+      ))}
     </div>
   );
 }
